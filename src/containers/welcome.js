@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
+import { Text, View, TouchableHighlight } from "react-native";
 import { inject } from "mobx-react/native";
+import styles from "./styles/welcomeStyle";
 import Localizable from "../lib/localizable";
 
 @inject("navigationStore")
@@ -17,12 +18,3 @@ export default class Welcome extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
