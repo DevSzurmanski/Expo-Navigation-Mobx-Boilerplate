@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View } from "react-native";
-import { Provider, inject, observer } from "mobx-react/native";
+import { Provider, observer } from "mobx-react/native";
 import DefaultRouter from "./src/navigation/defaultRouter";
 import { RootStore } from "./src/stores";
 
@@ -10,8 +10,7 @@ if (!__DEV__) {
 
 @observer
 export default class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
     this.rootStore = new RootStore();
   }
   render() {
