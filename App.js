@@ -1,21 +1,35 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from "react";
+import { Provider } from "mobx-react/native";
+import { RootStore } from "./src/stores";
+import {
+  listenOrientationChange as loc,
+  removeOrientationListener as rol
+} from "react-native-responsive-screen";
+import RootApp from "./src/RootApp";
 
-export default class App extends React.Component {
+if (!__DEV__) {
+  console.log = () => {};
+}
+
+export default class App extends Component {
+  constructor() {
+    super();
+    this.rootStore = new RootStore();
+  }
+  componentDidMount() {
+    loc(this);
+  }
+
+  componentWillUnMount() {
+    rol();
+  }
+
   render() {
+    const { stores } = this.rootStore;
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
+      <Provider {...stores}>
+        <RootApp />
+      </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
