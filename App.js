@@ -1,17 +1,24 @@
-import React from "react";
+import React, { Component } from "react";
 import { View } from "react-native";
+import { Provider, inject, observer } from "mobx-react/native";
 import DefaultRouter from "./src/navigation/defaultRouter";
+import { RootStore } from "./src/stores";
 
 if (!__DEV__) {
   console.log = () => {};
 }
 
-export default class App extends React.Component {
+@observer
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.rootStore = new RootStore();
+  }
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <DefaultRouter />
-      </View>
+      <Provider {...this.rootStore.stores}>
+        <DefaultRouter ref={this.rootStore.stores.navigationStore.createRef} />
+      </Provider>
     );
   }
 }
