@@ -8,6 +8,7 @@
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-28.0.0.tar.gz",
     "react-native-i18n": "^2.0.12",
+    "react-native-responsive-screen": "^1.1.6",
     "react-navigation": "^2.6.2",
     "react-navigation-mobx-helpers": "^2.0.0"
   },
